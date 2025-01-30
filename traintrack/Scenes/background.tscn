@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://y0ub2bj3tm03"]
+
+[ext_resource type="Texture2D" uid="uid://dak4csbt11ht3" path="res://Ressources/grundraster.jpg" id="1_y5i7n"]
+
+[node name="Background" type="Node2D"]
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+repeat_size = Vector2(500, 500)
+autoscroll = Vector2(0, 50)
+repeat_times = 10
+ignore_camera_scroll = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
+texture_filter = 1
+texture = ExtResource("1_y5i7n")
