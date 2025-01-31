@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://cgxj54o27pkkw"]
+
+[ext_resource type="PackedScene" uid="uid://cc8reb1vyhcpf" path="res://Ressources/Train_low_poly.glb" id="1_7lp7g"]
+[ext_resource type="Script" path="res://Scenes/player.gd" id="1_cjf0f"]
+[ext_resource type="Texture2D" uid="uid://dak4csbt11ht3" path="res://Ressources/grundraster.jpg" id="2_6yoj7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_f6uj4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mtyou"]
+albedo_texture = ExtResource("2_6yoj7")
+uv1_scale = Vector3(50, 50, 50)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 20.7996)
+script = ExtResource("1_cjf0f")
+
+[node name="Train_low_poly" parent="Player" instance=ExtResource("1_7lp7g")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+shape = SubResource("BoxShape3D_f6uj4")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 0.781118, 0.624384, 0, -0.624384, 0.781118, 0, 24.5177, 17.9462)
+
+[node name="Camera3D" type="Camera3D" parent="Player/SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 0.901387, 0.433014, 0, -0.433014, 0.901387, 0, 0, 0)
+fov = 70.0
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 0.842368, 0.538903, 0, -0.538903, 0.842368, -27.5972, 20.0604, 6.55766)
+light_energy = 4.531
+omni_range = 4096.0
+
+[node name="Ground" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.509912, 0)
+size = Vector3(500, 1, 500)
+material = SubResource("StandardMaterial3D_mtyou")
