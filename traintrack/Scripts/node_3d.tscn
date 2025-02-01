@@ -1,27 +1,27 @@
-[gd_scene load_steps=8 format=3 uid="uid://cgxj54o27pkkw"]
+[gd_scene load_steps=8 format=3 uid="uid://bm7yt6ibn3pht"]
 
-[ext_resource type="PackedScene" uid="uid://cc8reb1vyhcpf" path="res://Ressources/Train_low_poly.glb" id="1_7lp7g"]
-[ext_resource type="Script" path="res://Scenes/player.gd" id="1_cjf0f"]
-[ext_resource type="Script" path="res://Scenes/node_3d.gd" id="1_mn4ed"]
-[ext_resource type="Texture2D" uid="uid://dak4csbt11ht3" path="res://Ressources/grundraster.jpg" id="2_6yoj7"]
+[ext_resource type="Script" path="res://Scenes/node_3d.gd" id="1_wwqgl"]
+[ext_resource type="Script" path="res://Scenes/player.gd" id="2_tt8id"]
+[ext_resource type="PackedScene" uid="uid://cc8reb1vyhcpf" path="res://Ressources/Train_low_poly.glb" id="3_23kyo"]
+[ext_resource type="Texture2D" uid="uid://dak4csbt11ht3" path="res://Ressources/grundraster.jpg" id="4_mgeu1"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_f6uj4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mtyou"]
-albedo_texture = ExtResource("2_6yoj7")
+albedo_texture = ExtResource("4_mgeu1")
 uv1_scale = Vector3(8, 1, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yr3n8"]
 albedo_color = Color(1, 1, 0.117647, 1)
 
 [node name="Node3D" type="Node3D"]
-script = ExtResource("1_mn4ed")
+script = ExtResource("1_wwqgl")
 
 [node name="Player" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 9.97213)
-script = ExtResource("1_cjf0f")
+script = ExtResource("2_tt8id")
 
-[node name="Train_low_poly" parent="Player" instance=ExtResource("1_7lp7g")]
+[node name="Train_low_poly" parent="Player" instance=ExtResource("3_23kyo")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
 shape = SubResource("BoxShape3D_f6uj4")
@@ -47,15 +47,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.509912, 60)
 size = Vector3(5, 1, 30)
 material = SubResource("StandardMaterial3D_mtyou")
 
+[node name="VOSN3d_1_1" type="VisibleOnScreenNotifier3D" parent="Chunks/Chunkgroup1/Ground1_1"]
+
 [node name="Ground1_2" type="CSGBox3D" parent="Chunks/Chunkgroup1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, -0.51, 60)
 size = Vector3(55, 1, 30)
 material = SubResource("StandardMaterial3D_yr3n8")
 
+[node name="VOSN3d_1_2" type="VisibleOnScreenNotifier3D" parent="Chunks/Chunkgroup1/Ground1_2"]
+
 [node name="Ground1_3" type="CSGBox3D" parent="Chunks/Chunkgroup1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, -0.51, 60)
 size = Vector3(55, 1, 30)
 material = SubResource("StandardMaterial3D_yr3n8")
+
+[node name="VOSN3d_1_3" type="VisibleOnScreenNotifier3D" parent="Chunks/Chunkgroup1/Ground1_3"]
 
 [node name="Chunkgroup2" type="Node" parent="Chunks"]
 
@@ -107,3 +113,9 @@ material = SubResource("StandardMaterial3D_yr3n8")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, -0.51, -30)
 size = Vector3(55, 1, 30)
 material = SubResource("StandardMaterial3D_yr3n8")
+
+[connection signal="screen_exited" from="Chunks/Chunkgroup1/Ground1_1/VOSN3d_1_1" to="." method="_on_vosn_3d_1_1_screen_exited"]
+[connection signal="screen_exited" from="Chunks/Chunkgroup1/Ground1_1/VOSN3d_1_1" to="." method="_on_visible_on_screen_notifier_3d_screen_exited"]
+[connection signal="screen_exited" from="Chunks/Chunkgroup1/Ground1_2/VOSN3d_1_2" to="." method="_on_visible_on_screen_notifier_3d_screen_exited"]
+[connection signal="screen_exited" from="Chunks/Chunkgroup1/Ground1_2/VOSN3d_1_2" to="." method="_on_vosn_3d_1_2_screen_exited"]
+[connection signal="screen_exited" from="Chunks/Chunkgroup1/Ground1_3/VOSN3d_1_3" to="." method="_on_visible_on_screen_notifier_3d_screen_exited"]

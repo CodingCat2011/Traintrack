@@ -15,12 +15,8 @@ func _physics_process(delta):
 	else:
 		velocity.z = lerp(velocity.z,0.0, 0.001) #slowed to resistance
 		
-	if Input.is_action_just_released("Train_slow_down") and velocity.z < acceleration:
+	if (Input.is_action_just_released("Train_slow_down") or Input.is_action_just_released("Train_speed_up")) and velocity.z < 1.8 and velocity.z > -1.8:
 		velocity.z = 0
-	elif Input.is_action_just_released("Train_speed_up") and velocity.z > -acceleration*2:
-		velocity.z = 0
-		
-	print(velocity.z)
 
 
 	move_and_slide()
