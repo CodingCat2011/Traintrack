@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cgxj54o27pkkw"]
+[gd_scene load_steps=7 format=3 uid="uid://cgxj54o27pkkw"]
 
 [ext_resource type="PackedScene" uid="uid://cc8reb1vyhcpf" path="res://Ressources/Train_low_poly.glb" id="1_7lp7g"]
 [ext_resource type="Script" path="res://Scenes/player.gd" id="1_cjf0f"]
@@ -8,12 +8,15 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mtyou"]
 albedo_texture = ExtResource("2_6yoj7")
-uv1_scale = Vector3(50, 50, 50)
+uv1_scale = Vector3(8, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yr3n8"]
+albedo_color = Color(1, 1, 0.117647, 1)
 
 [node name="Node3D" type="Node3D"]
 
 [node name="Player" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 20.7996)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 9.97213)
 script = ExtResource("1_cjf0f")
 
 [node name="Train_low_poly" parent="Player" instance=ExtResource("1_7lp7g")]
@@ -35,5 +38,15 @@ omni_range = 4096.0
 
 [node name="Ground" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.509912, 0)
-size = Vector3(500, 1, 500)
+size = Vector3(5, 1, 30)
 material = SubResource("StandardMaterial3D_mtyou")
+
+[node name="Ground2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, -0.51, 0)
+size = Vector3(55, 1, 30)
+material = SubResource("StandardMaterial3D_yr3n8")
+
+[node name="Ground3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, -0.51, 0)
+size = Vector3(55, 1, 30)
+material = SubResource("StandardMaterial3D_yr3n8")
